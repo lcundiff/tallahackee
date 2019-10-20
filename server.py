@@ -12,6 +12,7 @@ global db
 def getDB(client):
   db = client.get_database('hackershelping')
   #print("db check: ",db.collection.find({}))
+
     #return db.collection.find().count
 
 
