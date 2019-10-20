@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+{% extends "header.html" %}<!-- all html files should extend from the header, (the header contains all static references as well) -->
+{% block content %}<!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html -->
+<html>
+<section class="login">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <center><img class="logo img-fluid" src="../static/images/hh.png" id="icon" alt="User Icon" /></center>
+    </div>
+    
+    <!-- Login Form -->
+    <div class="row">
+    <div class="col-6">
+      <h5>Non-Profit Sign-Up</h5>
+      <form method="POST" action="signup">
+        <input type="text" id="name" class="fadeIn third" name="name" placeholder="non-profit name">
+        <input type="text" id="login" class="fadeIn second" name="username" placeholder="email">
+        <input id="password" type="password" class="fadeIn third" name="password" placeholder="password">
+        <input type="text" id="website"  class="fadeIn third" name="website" placeholder="website URL">
+        <input style="display:none;" type="text" id="user_type" class="user_type fadeIn second" name="user_type"placeholder="email">
+        <input id="submit-np" type="submit" class="fadeIn fourth" value="Sign Up">
+      </form>
+    {% if error %}
+      <p class=error><strong>Error:</strong> {{ error-np }}
+    {% endif %}
+    </div>
+    <div class="col-6">
+      <h5>Volunteer Sign-Up</h5>
+      <form method="POST" action="signup">
+        <input type="text" id="fname" class="fadeIn third" name="fname" placeholder="first name">
+        <input type="text" id="lname" class="fadeIn third" name="lname" placeholder="last name">
+        <input type="text" id="login" class="fadeIn second" name="username" placeholder="email">
+        <input style="display:none;" type="text" id="user_type" class="user_type fadeIn second" name="user_type"placeholder="email">
+        <input id="password" type="password" class="fadeIn third" name="password" placeholder="password">
+        <input id="submit-vol" type="submit" class="fadeIn fourth" value="Sign Up">
+      </form>  
+    {% if error %}
+      <p class=error><strong>Error:</strong> {{ error-vol }}
+    {% endif %}
+    </div>
+
+</div>
+
+  </div>
+</div>
+</section>
+</html>
+<script>
+  $('#submit-np').submit(function (event) {
+  'use strict';
+  $('.user_type').val('np');
+});
+  $('#submit-vol').submit(function (event) {
+  'use strict';
+  $('.user_type').val('vol');
+});
+</script>
+{% endblock %}<!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html -->

@@ -1,6 +1,6 @@
 
 def signup(req,db):
-  user_data = req.get_json
+  user_data = req
   if(user_data["user_type"] == "volunteer"):
     db.volunteers.insert_one({
       "email":'lcundiff@ufl.edu', 
@@ -16,6 +16,7 @@ def signup(req,db):
       "projects": {[]},
       "volunteers": {[]}
   	})	
+  return ('profile.html')
   #cur = db.volunteers.find()
 	
   #for doc in cur:
@@ -24,7 +25,7 @@ def signup(req,db):
   return True
 
 def signin(req, db):
-  user_data = req.get_json
+  user_data = req
   username = user_data["email"]
   password = user_data["password"]
   
