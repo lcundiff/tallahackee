@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+{% extends "header.html" %}<!-- all html files should extend from the header, (the header contains all static references as well) -->
+{% block content %}<!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html -->
+<html>
+<div id="app">
+  <div class="card" style="width: 18rem;">
+    <img src="" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">
+        [[message]]
+      </p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
+  <section class="login"></section>
+</html>
+<script>
+  var vm = new Vue({
+    delimiters: ["[[", "]]"],
+    el: "#app",
+
+    data: {
+      message: "Hello world",
+      password: "bug",
+      email: "",
+      orgs: [
+        {
+          name: "Save the Squirrels",
+          img: "https://picsum.photos/200",
+          website: "www.savesquirrels.yolo"
+        },
+        {
+          name: "Feed the Turtles",
+          img: "https://picsum.photos/200",
+          website: "www.turtlefood.yolo"
+        },
+        {
+          name: "Support Tally Teachers",
+          img: "https://picsum.photos/200",
+          website: "www.tallyteachers.yolo"
+        },
+        {
+          name: "Make the Roads Safer",
+          img: "https://picsum.photos/200",
+          website: "www.saferoads.yolo"
+        }
+      ]
+    },
+    methods: {
+      submitRegistration: function() {
+        // axios makes a post request to sign up.
+        axios
+          .post("/signup", {
+            email: "",
+            password: ""
+          })
+          .then(function(response) {
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+    },
+    created() {}
+  });
+
+  $("#np-check").click(function(event) {
+    $("#np-check").val("np");
+  });
+  $("#vol-check").click(function(event) {
+    $("#vol-check").val("vol");
+    $("#np-check").val("vol");
+  });
+</script>
+{% endblock %}<!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html -->
