@@ -1,18 +1,20 @@
 <!DOCTYPE html>
+
 {% extends "header.html" %} <!-- all html files should extend from the header, (the header contains all static references as well) --> 
 {% block content %} <!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 
 <hr>
-<div class="container bootstrap snippet">
+<div id="app" class="container bootstrap snippet">
     <div class="row">
-  		<div class="col-sm-8"><h1>User name</h1></div>
-    	<div style="" class=" col-4"><img title="profile image" class="logo rounded" src=../static/images/hh.png></div>
+          <div class="col-sm-8"><h1>coolhacker77</h1>
+            {{user_data}} {{orgs}}
+        <a href="#" @click="edit_toggle=!edit_toggle">edit profile</a>
+        </div>
+    	<div  class=" col-4"><img title="profile image" class="logo rounded" src="../static/images/hh.png"></div>
     </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
-              
+ 
 
       <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
@@ -44,17 +46,13 @@
           
         </div><!--/col-3-->
     	<div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active nav-item"><a class="nav-link" data-toggle="tab" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settings">Menu 2</a></li>
-              </ul>
+
 
               
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
+                  <form v-if="edit_toggle" class="form" action="##" method="post" id="registrationForm">
                       <div class="form-group">
                           
                           <div class="col-xs-6">
@@ -120,7 +118,40 @@
                             </div>
                       </div>
               	</form>
-              
+                <div v-if="!edit_toggle">
+                    <div class="d-flex flex-wrap">
+
+                        <!-- Example organizations from stub. -->
+                      {% for np in orgs  %}
+                        <div v-for="org in orgs" class="card" style="width: 18rem;">
+                                <img v-bind:src="org.img" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">{{np['name']}}</h5>
+                                    <p class="card-text">
+                                    {{np['email']}}
+                                      <hr>
+                                    {{np['website']}}
+                                    </p>
+                                    <a href="#" class="btn btn-primary">Learn more</a>
+                                </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    <div class="d-flex flex-wrap">
+
+                        <!-- Example organizations from stub. -->
+                        <div v-for="org in orgs" class="card" style="width: 18rem;">
+                                <img v-bind:src="org.img" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">[[org.name]]</h5>
+                                    <p class="card-text">
+                                    [[org.website]]
+                                    </p>
+                                    <a href="#" class="btn btn-primary">Learn more</a>
+                                </div>
+                                </div>
+                    </div>
+                </div>
               <hr>
               
              </div><!--/tab-pane-->
@@ -274,5 +305,50 @@
 
         </div><!--/col-9-->
     </div><!--/row-->
-                                                      
-{% endblock %} <!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html --> 
+       
+
+
+
+
+
+
+ <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+ <script>
+
+        var vm = new Vue({
+          delimiters: ["[[", "]]"],
+          el: "#app",
+          data: {
+            message: "Hello world",
+            password: "bug",
+            edit_toggle: false,
+            database_user :{},
+            database_orgs : [],
+            orgs: [
+              {name: "Save the Squirrels",
+              img: "https://picsum.photos/id/635/200/200",
+              website: "www.savesquirrels.yolo"
+              },
+              {name: "Feed the Turtles",
+              img: "https://picsum.photos/id/4/200/200",
+              website: "www.turtlefood.yolo"
+              },
+              {name: "Support Tally Teachers",
+              img: "https://picsum.photos/id/2/200/200",
+              website: "www.tallyteachers.yolo"
+              },
+              {name: "Make the Roads Safer",
+              img: "https://picsum.photos/id/25/200/200",
+              website: "www.saferoads.yolo"
+              },
+            ]
+          },
+
+          
+        });    
+      </script>
+
+{% endblock %}
+// <!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html --> 

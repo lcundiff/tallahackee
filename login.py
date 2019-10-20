@@ -12,7 +12,7 @@ def signup(req,db):
         "projects": {},
         "volunteers": {}
       })	
-      return ('profile.html',user_data)
+      return ('np.html',user_data)
   except:
     try:
       db.volunteers.insert_one({
@@ -23,8 +23,8 @@ def signup(req,db):
       })
       return ('profile.html',user_data)
     except:
-      return ('register.html')
-  return ('register.html')
+      return ('register.html'),""
+  return ('register.html'),""
   #cur = db.volunteers.find()
 	
   #for doc in cur:
@@ -39,26 +39,26 @@ def signin(req, db):
   
   try:
     if(user_data["user_type"] == "np"): # Verifies login info for volunteer
-     if (username == db.nonprofits.find_one({"email" : user_data["email"]}) is None):
-      print("Username not found.")
-      return 'sign-in.html'
-    if (db.nonprofits.find_one({"password" : user_data["password"]}) is not None):
-      return 'profile.html',user_data
+      if (db.nonprofits.find_one({"email" : user_data["email"]}) is None):
+        print("Username not found.")
+        return 'sign-in.html',""
+      if (db.nonprofits.find_one({"password" : user_data["password"]}) is not None):
+        return 'np.html',user_data
     else: 
       print("Password is incorrect.")
-      return 'sign-in.html'
+      return 'sign-in.html',""
   except:
     if( db.volunteers.find_one({"email" : user_data["email"]}) is None):
       print("Username not found.")
-      return 'sign-in.html'
+      return 'sign-in.html',""
     if (db.volunteers.find_one({"password" : user_data["password"]}) is not None):
       return 'profile.html',user_data
     else: 
       print("Password is incorrect.")
-      return 'sign-in.html'
+      return 'sign-in.html',""
   
   else:
-    return 'sign-in.html' #should never happen
+    return 'sign-in.html',"" #should never happen
 
 	
   
