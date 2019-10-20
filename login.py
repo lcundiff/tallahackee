@@ -1,7 +1,7 @@
 
 def signup(req,db):
   user_data = req.get_json
-  if(user_data["user_type"] == "volunteer")
+  if(user_data["user_type"] == "volunteer"):
     db.volunteers.insert_one({
       "email":'lcundiff@ufl.edu',
   	  "password": 'fsuhack',

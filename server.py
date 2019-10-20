@@ -4,7 +4,7 @@ from flask import render_template
 from pymongo import MongoClient
 from login import *
 from submitProject import *
-import getMatches import *
+from getMatches import *
 
 global db
 
@@ -12,7 +12,6 @@ global db
 def getDB(client):
   db = client.get_database('hackershelping')
   #print("db check: ",db.collection.find({}))
-  signup('test',db)
     #return db.collection.find().count
 
 
