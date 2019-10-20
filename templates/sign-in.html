@@ -1,8 +1,6 @@
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
+{% extends "header.html" %} <!-- all html files should extend from the header, (the header contains all static references as well) --> 
+{% block content %} <!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html -->
 <div class="container">
     <div class="row-fluid">
         <div class="span12">
@@ -154,3 +152,4 @@
         </div>
     </div>
 </div>
+{% endblock %} <!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html --> 
