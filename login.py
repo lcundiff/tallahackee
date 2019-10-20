@@ -8,10 +8,11 @@ def signup(req,db):
         "password": user_data["password"],
         "name": user_data["name"],
         "website": user_data["website"],
+        "img_url": "",
         "projects": {},
         "volunteers": {}
       })	
-      return ('profile.html')
+      return ('profile.html',user_data)
   except:
     try:
       db.volunteers.insert_one({
@@ -20,7 +21,7 @@ def signup(req,db):
         "fname": user_data["fname"],
         "lname": user_data["lname"]
       })
-      return ('profile.html')
+      return ('profile.html',user_data)
     except:
       return ('register.html')
   return ('register.html')
@@ -42,7 +43,7 @@ def signin(req, db):
       print("Username not found.")
       return 'sign-in.html'
     if (db.nonprofits.find_one({"password" : user_data["password"]}) is not None):
-      return 'profile.html'
+      return 'profile.html',user_data
     else: 
       print("Password is incorrect.")
       return 'sign-in.html'
@@ -51,7 +52,7 @@ def signin(req, db):
       print("Username not found.")
       return 'sign-in.html'
     if (db.volunteers.find_one({"password" : user_data["password"]}) is not None):
-      return 'profile.html'
+      return 'profile.html',user_data
     else: 
       print("Password is incorrect.")
       return 'sign-in.html'

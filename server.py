@@ -6,7 +6,7 @@ from pymongo import MongoClient
 from login import *
 from submitProject import *
 from getMatches import *
-
+from getAllNP import * 
 client = MongoClient('mongodb+srv://hackershelping:hackfsu@hackershelping-akpvf.gcp.mongodb.net/test?retryWrites=true&w=majority')
 global db
 db = client.get_database('hackershelping')
@@ -23,7 +23,10 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def loginRoute():    
   print("logging in")
-  return render_template(signin(request.form,db)) #this is the home page currently
+  nps = getAllNP(db)
+  print(vars(nps))
+  url, user_data = signin(request.form,db)
+  return render_template(url,user_data=user_data,orgs=nps) #this is the home page currently
 
 @app.route('/load_signup_screen', methods=['GET', 'POST'])
 def signupScreenRoute():    
@@ -32,7 +35,9 @@ def signupScreenRoute():
 @app.route('/signup', methods=['GET', 'POST'])
 def signupRoute():    
   #print(vars(request))
-  return render_template(signup(request.form,db)) #this is the home page currently
+  nps = getAllNP(db)
+  url, user_data = signup(request.form,db)
+  return render_template(url,user_data=user_data,orgs=nps) #this is the home page currently
 
 @app.route('/submitProject', methods=['GET', 'POST'])
 def submitProjectRoute():    
