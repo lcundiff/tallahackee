@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./styles/main.css">
+    <!-- 
+        Using vue and axios to communicate with the server.
+     -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Example Vue Page</title>
+  </head>
+  <body>
+    <div id="app">
+      [[message]]
+      <form>
+        <label for="email">email:<input type="text" v-model="email"/></label>
+        <label for="password"
+          >password:<input type="text" v-model="password"
+        /></label>
+        <button @click.prevent="submitRegistration">Sign up</button>
+      </form>
+      <h3>What is being submitted</h3>
+      <div>email: [[email]]</div>
+      <div>password: [[password]]</div>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        delimiters: ["[[", "]]"],
+        el: "#app",
+
+        data: {
+          message: "Hello world",
+          password: "bug",
+          email: ""
+        },
+        methods: {
+          greeter: function() {
+            console.log("hello");
+          },
+          submitRegistration: function() {
+            // axios makes a post request to sign up.
+            axios
+              .post("/signup", {
+                email: "",
+                password: ""
+              })
+              .then(function(response) {
+                console.log(response);
+              })
+              .catch(function(error) {
+                console.log(error);
+              });
+          }
+        },
+        created() {
+          this.greeter();
+        }
+      });
+    </script>
+  </body>
+</html>
