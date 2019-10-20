@@ -7,6 +7,7 @@
 <div id="app" class="container bootstrap snippet">
     <div class="row">
           <div class="col-sm-8"><h1>coolhacker77</h1>
+            {{user_data}} {{orgs}}
         <a href="#" @click="edit_toggle=!edit_toggle">edit profile</a>
         </div>
     	<div  class=" col-4"><img title="profile image" class="logo rounded" src="../static/images/hh.png"></div>
@@ -117,7 +118,25 @@
                             </div>
                       </div>
               	</form>
-                <v-else>
+                <div v-if="!edit_toggle">
+                    <div class="d-flex flex-wrap">
+
+                        <!-- Example organizations from stub. -->
+                      {% for np in orgs  %}
+                        <div v-for="org in orgs" class="card" style="width: 18rem;">
+                                <img v-bind:src="org.img" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">{{np['name']}}</h5>
+                                    <p class="card-text">
+                                    {{np['email']}}
+                                      <hr>
+                                    {{np['website']}}
+                                    </p>
+                                    <a href="#" class="btn btn-primary">Learn more</a>
+                                </div>
+                        </div>
+                      {% endfor %}
+                    </div>
                     <div class="d-flex flex-wrap">
 
                         <!-- Example organizations from stub. -->
@@ -132,7 +151,7 @@
                                 </div>
                                 </div>
                     </div>
-                </v-else>
+                </div>
               <hr>
               
              </div><!--/tab-pane-->
@@ -297,8 +316,7 @@
  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
  <script>
-{{user_data}}
-{{orgs}}
+
         var vm = new Vue({
           delimiters: ["[[", "]]"],
           el: "#app",
@@ -306,7 +324,6 @@
             message: "Hello world",
             password: "bug",
             edit_toggle: false,
-            email: "",
             database_user :{},
             database_orgs : [],
             orgs: [
@@ -328,25 +345,9 @@
               },
             ]
           },
-          methods: {
-            getOrgs: function() {
-              // axios makes a post request to sign up.
-              axios
-                .get("/getOrgs")
-                .then(function(response) {
-                  console.log(response);
-                })
-                .catch(function(error) {
-                  console.log(error);
-                });
-            }
-          },
-          created() {
-              getOrgs();
-          }
-        });
 
-        
+          
+        });    
       </script>
 
 {% endblock %}
