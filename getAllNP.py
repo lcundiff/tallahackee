@@ -5,4 +5,3 @@ def getAllNP(db):
   # gathers all non-profit data
   np_data = db.nonprofits.find()
   return np_data
-  

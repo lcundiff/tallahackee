@@ -5,4 +5,3 @@ def getAllVol(db):
   # gathers all volunteer data
   vol_data = db.volunteers.find()
   return vol_data
-  
