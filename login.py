@@ -1,21 +1,19 @@
 
 def signup(req,db):
   user_data = req
-  print(user_data["user_type"])
-  #try:
-  if(user_data["user_type"] == "np"):
-    db.nonprofits.insert_one({
-      "email": user_data["email"],
-      "password": user_data["password"],
-      "name": user_data["name"],
-      "website": user_data["website"],
-      "projects": {[]},
-      "volunteers": {[]}
-    })	
-    return ('profile.html')
-#except:
   try:
-    if(user_data["user_type"] == "vol"):
+    if(user_data["user_type"] == "np"):
+      db.nonprofits.insert_one({
+        "email": user_data["email"],
+        "password": user_data["password"],
+        "name": user_data["name"],
+        "website": user_data["website"],
+        "projects": {},
+        "volunteers": {}
+      })	
+      return ('profile.html')
+  except:
+    try:
       db.volunteers.insert_one({
         "email": user_data["email"],
         "password": user_data["password"],
@@ -23,8 +21,8 @@ def signup(req,db):
         "lname": user_data["lname"]
       })
       return ('profile.html')
-  except:
-    return ('register.html')
+    except:
+      return ('register.html')
   return ('register.html')
   #cur = db.volunteers.find()
 	
