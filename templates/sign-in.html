@@ -10,17 +10,20 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <center><div class="image-cropper"><img class="profile-pic img-fluid" src="../static/images/" id="icon" alt="User Icon" /></div></center>
+      <center><div class="image-cropper"><img class="logo img-fluid" src="../static/images/hh.png" id="icon" alt="User Icon" /></div></center>
     </div>
 
     <!-- Login Form -->
     <form method="POST" action="login">
-      <input type="text" id="login" class="fadeIn second" name="username" placeholder="email">
+      <input type="text" id="login" class="fadeIn second" name="email" placeholder="email">
       <input id="password" type="password" class="fadeIn third" name="password" placeholder="password">
+    <label class="col-2 form-check-label">
+      <input id="np-check" type="checkbox" name="user_type" class="form-check-input" value="">Non-Profit
+    </label>
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
     <hr><p style="margin-bottom:-5px;">Don't have an account?</p>
-    <form method="POST" action="signup">
+    <form method="POST" action="load_signup_screen">
       <input type="submit" class="fadeIn fourth" value="Sign Up">
     </form>
     {% if error %}
@@ -38,4 +41,13 @@
 </div>
 </section>
 </html>
+<script>
+  $('#np-check').click(function (event) {
+  $('#np-check').val('np');
+});
+  $('#vol-check').click(function (event) {
+  $('#vol-check').val('vol');
+  $('#np-check').val('vol');
+});
+</script>
 {% endblock %}<!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html -->
