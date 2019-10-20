@@ -141,6 +141,9 @@
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
+.login #formContent input[type=text], .login #formContent input[type=password]  {
+  max-width:350px;
+}
 
 .login input[type=text]:focus, .login input[type=password]:focus {
   background-color: #fff;
