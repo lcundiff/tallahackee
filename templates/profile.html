@@ -7,7 +7,6 @@
 <div id="app" class="container bootstrap snippet">
     <div class="row">
           <div class="col-sm-8"><h1>coolhacker77</h1>
-            {{user_data}} {{orgs}}
         <a href="#" @click="edit_toggle=!edit_toggle">edit profile</a>
         </div>
     	<div  class=" col-4"><img title="profile image" class="logo rounded" src="../static/images/hh.png"></div>
@@ -19,7 +18,7 @@
       <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload a different photo...</h6>
-        <input style="width:100%;" type="file" class="text-center d-block mx-auto file-upload">
+        <input v-if="edit_toggle" style="width:100%;" type="file" class="text-center d-block mx-auto file-upload">
       </div></hr><br>
 
                
@@ -123,16 +122,15 @@
 
                         <!-- Example organizations from stub. -->
                       {% for np in orgs  %}
-                        <div v-for="org in orgs" class="card" style="width: 18rem;">
+                        <div v-for="org in orgs" class="card text-center" style="width: 18rem;">
                                 <img v-bind:src="org.img" class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <h5 class="card-title">{{np['name']}}</h5>
                                     <p class="card-text">
-                                    {{np['email']}}
-                                      <hr>
+                                    Contact: {{np['email']}}
                                     {{np['website']}}
                                     </p>
-                                    <a href="#" class="btn btn-primary">Learn more</a>
+                                    <a href="{{np['website']}}" class="btn btn-primary">Learn more</a>
                                 </div>
                         </div>
                       {% endfor %}
@@ -140,11 +138,12 @@
                     <div class="d-flex flex-wrap">
 
                         <!-- Example organizations from stub. -->
-                        <div v-for="org in orgs" class="card" style="width: 18rem;">
+                        <div v-for="org in orgs" class="card text-center" style="width: 18rem;">
                                 <img v-bind:src="org.img" class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <h5 class="card-title">[[org.name]]</h5>
                                     <p class="card-text">
+                                    Contact: [[org.email]]
                                     [[org.website]]
                                     </p>
                                     <a href="#" class="btn btn-primary">Learn more</a>
@@ -329,19 +328,23 @@
             orgs: [
               {name: "Save the Squirrels",
               img: "https://picsum.photos/id/635/200/200",
-              website: "www.savesquirrels.yolo"
+              website: "www.savesquirrels.yolo",
+              email: "squirrel1@save.yolo"
               },
               {name: "Feed the Turtles",
               img: "https://picsum.photos/id/4/200/200",
-              website: "www.turtlefood.yolo"
+              website: "www.turtlefood.yolo",
+              email: "turtlepower@food.yolo"
               },
               {name: "Support Tally Teachers",
               img: "https://picsum.photos/id/2/200/200",
-              website: "www.tallyteachers.yolo"
+              website: "www.tallyteachers.yolo",
+              email: "teach@tally.yolo"
               },
               {name: "Make the Roads Safer",
               img: "https://picsum.photos/id/25/200/200",
-              website: "www.saferoads.yolo"
+              website: "www.saferoads.yolo",
+              email: "makeroads@safe.yolo"
               },
             ]
           },
