@@ -1,75 +1,156 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./styles/sign-in.css" />
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+<div class="container">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span6">
+                <div class="area">
+                    <form class="form-horizontal">
+                        <div class="heading">
+                            <h4 class="form-heading">Sign In</h4>
+                        </div>
 
-    <title>Document</title>
-  </head>
-  <body>
-    <form class="form-signin">
-      <img
-        class="mb-4"
-        src="{{ site.baseurl }}/docs/{{
-          site.docs_version
-        }}/assets/brand/bootstrap-solid.svg"
-        alt=""
-        width="72"
-        height="72"
-      />
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input
-        type="email"
-        id="inputEmail"
-        class="form-control"
-        placeholder="Email address"
-        required
-        autofocus
-      />
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="inputPassword"
-        class="form-control"
-        placeholder="Password"
-        required
-      />
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me" /> Remember me
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Sign in
-      </button>
-      <p class="mt-5 mb-3 text-muted">
-        &copy; 2017-{{ site.time | date: "%Y" }}
-      </p>
-    </form>
-  </body>
-</html>
+                        <div class="control-group">
+                            <label class="control-label" for=
+                            "inputCompanyName">Company Name</label>
+
+                            <div class="controls">
+                                <input id="inputCompanyName" placeholder=
+                                "E.g. Some Software Pvt. Ltd." type="text">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for=
+                            "inputUsername">Username</label>
+
+                            <div class="controls">
+                                <input id="inputUsername" placeholder=
+                                "E.g. ashwinhegde" type="text">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for=
+                            "inputPassword">Password</label>
+
+                            <div class="controls">
+                                <input id="inputPassword" placeholder=
+                                "Min. 8 Characters" type="password">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="checkbox"><input type="checkbox">
+                                Keep me signed in ¦ <a class="btn btn-link"
+                                href="#">Forgot my password</a></label>
+                                <button class="btn btn-success" type=
+                                "submit">Sign In</button> <button class="btn"
+                                type="button">Help</button>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-error">
+                            <button class="close" data-dismiss="alert" type=
+                            "button">×</button> <strong>Access Denied!</strong>
+                            Please provide valid authorization.
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="span6">
+                <div class="area">
+                    <form class="form-horizontal">
+                        <div class="heading">
+                            <h4 class="form-heading">Sign Up</h4>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for=
+                            "inputCompanyName">Company Name</label>
+
+                            <div class="controls">
+                                <input id="inputCompanyName" placeholder=
+                                "E.g. Some Software Pvt. Ltd." type="text">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputFirst">First
+                            Name</label>
+
+                            <div class="controls">
+                                <input id="inputFirst" placeholder=
+                                "E.g. Ashwin" type="text">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputLast">Last
+                            Name</label>
+
+                            <div class="controls">
+                                <input id="inputLast" placeholder="E.g. Hegde"
+                                type="text">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for=
+                            "inputEmail">Email</label>
+
+                            <div class="controls">
+                                <input id="inputEmail" placeholder=
+                                "E.g. ashwinh@cybage.com" type="text">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for=
+                            "inputUser">Username</label>
+
+                            <div class="controls">
+                                <input id="inputUser" placeholder=
+                                "E.g. ashwinhegde" type="text">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for=
+                            "inputPassword">Password</label>
+
+                            <div class="controls">
+                                <input id="inputPassword" placeholder=
+                                "Min. 8 Characters" type="password">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="checkbox"><input type="checkbox">
+                                I agree all your <a href="#">Terms of
+                                Services</a></label> <button class=
+                                "btn btn-success" type="submit">Sign
+                                Up</button> <button class="btn" type=
+                                "button">Help</button>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <button class="close" data-dismiss="alert" type=
+                            "button">×</button> <strong>Confirmation:</strong>
+                            A confirmation email has been sent to your
+                            email.<br>
+                            Thank you for your registration.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
