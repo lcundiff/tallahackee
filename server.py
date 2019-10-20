@@ -1,19 +1,22 @@
 from flask import Flask
 import os
 from flask import render_template
-
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://hackershelping:hackfsu@hackershelping-akpvf.gcp.mongodb.net/test?retryWrites=true&w=majority')
+from login import *
+from submitProject import *
+import getMatches import *
 
-def my_function(mydb):
-    db = client.get_database(mydb)
-    return db.collection.find().count()
+global db
 
-print(my_function('my_database'))
+
+def getDB(client):
+  db = client.get_database('hackershelping')
+  #print("db check: ",db.collection.find({}))
+  signup('test',db)
+    #return db.collection.find().count
+
 
 #mongodb+srv://hackershelping:hackfsu@hackershelping-akpvf.gcp.mongodb.net/test?retryWrites=true&w=majority
-
-
 
 app = Flask(__name__)
 
@@ -21,5 +24,21 @@ app = Flask(__name__)
 def home():    
   return render_template('sign-in.html') #this is the home page currently
 
+@app.route('/signup', methods=['GET', 'POST'])
+def signupRoute(req):    
+  return signup(req,db) #this is the home page currently
+
+@app.route('/submitProject', methods=['GET', 'POST'])
+def submitProjectRoute(req):    
+  return submitProject(req,db)
+
+@app.route('/getMatches', methods=['GET', 'POST'])
+def getMatchesRoute(req):    
+  return getMatches(req,db)
+
+
+
 if __name__ == "__main__":
+  client = MongoClient('mongodb+srv://hackershelping:hackfsu@hackershelping-akpvf.gcp.mongodb.net/test?retryWrites=true&w=majority')
+  getDB(client)
   app.run(debug=True)
