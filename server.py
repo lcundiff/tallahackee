@@ -20,6 +20,11 @@ app = Flask(__name__)
 def home():    
   return render_template('sign-in.html') #this is the home page currently
 
+@app.route('/login', methods=['GET', 'POST'])
+def loginRoute():    
+  print("logging in")
+  return render_template(signin(request.form,db)) #this is the home page currently
+
 @app.route('/load_signup_screen', methods=['GET', 'POST'])
 def signupScreenRoute():    
   return render_template('register.html') # brings user to sign up screen

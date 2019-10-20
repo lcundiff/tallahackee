@@ -19,10 +19,10 @@
       <h5>Non-Profit Sign-Up</h5>
       <form method="POST" action="signup">
         <input type="text" id="name" class="fadeIn third" name="name" placeholder="non-profit name">
-        <input type="text" id="login" class="fadeIn second" name="username" placeholder="email">
+        <input type="text" id="login" class="fadeIn second" name="email" placeholder="email">
         <input id="password" type="password" class="fadeIn third" name="password" placeholder="password">
         <input type="text" id="website"  class="fadeIn third" name="website" placeholder="website URL">
-        <input style="display:none;" type="text" id="user_type" class="user_type fadeIn second" name="user_type"placeholder="email">
+        <input style="display:none;" type="text" value="np" id="user_type1" class="user_type fadeIn second" name="user_type"placeholder="email">
         <input id="submit-np" type="submit" class="fadeIn fourth" value="Sign Up">
       </form>
     {% if error %}
@@ -34,8 +34,7 @@
       <form method="POST" action="signup">
         <input type="text" id="fname" class="fadeIn third" name="fname" placeholder="first name">
         <input type="text" id="lname" class="fadeIn third" name="lname" placeholder="last name">
-        <input type="text" id="login" class="fadeIn second" name="username" placeholder="email">
-        <input style="display:none;" type="text" id="user_type" class="user_type fadeIn second" name="user_type"placeholder="email">
+        <input type="text" id="login" class="fadeIn second" name="email" placeholder="email">
         <input id="password" type="password" class="fadeIn third" name="password" placeholder="password">
         <input id="submit-vol" type="submit" class="fadeIn fourth" value="Sign Up">
       </form>  
@@ -53,11 +52,11 @@
 <script>
   $('#submit-np').submit(function (event) {
   'use strict';
-  $('.user_type').val('np');
+  $('#user_type1').val('np');
 });
   $('#submit-vol').submit(function (event) {
   'use strict';
-  $('.user_type').val('vol');
+  $('#user_type2').val('vol');
 });
 </script>
 {% endblock %}<!-- this appears when looking at html but if running Flask, will not appear (needed for extending from header.html -->
