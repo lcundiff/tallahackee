@@ -16,9 +16,12 @@ db = client.get_database('hackershelping')
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def home():    
   return render_template('sign-in.html') #this is the home page currently
+
+#urn submitProject(request.form,db,_id) # brings user to sign up screen
 
 @app.route('/login', methods=['GET', 'POST'])
 def loginRoute():    
@@ -32,6 +35,7 @@ def loginRoute():
 def signupScreenRoute():    
   return render_template('register.html') # brings user to sign up screen
 
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signupRoute():    
   #print(vars(request))
@@ -41,7 +45,7 @@ def signupRoute():
 
 @app.route('/submitProject', methods=['GET', 'POST'])
 def submitProjectRoute():    
-  return submitProject(request.form,db)
+  return render_template(submitProject(request.form,db),user_data="")
 
 @app.route('/getMatches', methods=['GET', 'POST'])
 def getMatchesRoute(req):    
